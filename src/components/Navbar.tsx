@@ -30,7 +30,7 @@ export const Navbar = () => {
   return (
     <>
       <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border">
-        <div className="max-w-[1200px] mx-auto px-6 h-20 grid grid-cols-3 items-center">
+        <div className="max-w-[1280px] mx-auto px-6 md:px-10 h-20 grid grid-cols-[1fr_auto_1fr] items-center gap-6">
           {/* Logo - left */}
           <Link to="/" className="text-xl md:text-2xl font-heading font-bold tracking-tighter flex items-center gap-2 justify-self-start">
             <div className="w-8 h-8 bg-primary rounded-sm" />
@@ -49,7 +49,7 @@ export const Navbar = () => {
           </div>
 
           {/* Nav - right */}
-          <div className="hidden md:flex items-center gap-9 text-[15px] font-bold uppercase tracking-widest text-foreground justify-self-end">
+          <div className="hidden md:flex items-center gap-7 text-[14px] font-bold uppercase tracking-wider text-foreground justify-self-end whitespace-nowrap">
             <Link to="/" className="hover:text-primary transition-colors duration-200">
               Home
             </Link>
