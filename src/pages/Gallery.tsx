@@ -29,26 +29,27 @@ const Gallery = () => (
       </p>
     </motion.div>
 
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
       {galleryItems.map((item, i) => (
         <motion.div
           key={item.title}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: i * 0.05, ease }}
-          className="group"
+          className="group relative aspect-[16/10] overflow-hidden border border-border bg-muted shadow-soft"
         >
-          <div className="aspect-[4/5] bg-muted border border-border overflow-hidden flex items-center justify-center relative">
+          <div className="absolute inset-0 flex items-center justify-center">
             {item.category === "Award" ? (
-              <Award size={40} strokeWidth={1} className="text-muted-foreground/40" />
+              <Award size={48} strokeWidth={1} className="text-muted-foreground/40" />
             ) : (
-              <ImageIcon size={40} strokeWidth={1} className="text-muted-foreground/40" />
+              <ImageIcon size={48} strokeWidth={1} className="text-muted-foreground/40" />
             )}
-            <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/[0.03] transition-colors" />
           </div>
-          <div className="mt-3 space-y-1">
-            <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-primary">{item.category}</p>
-            <h3 className="text-sm font-heading font-semibold tracking-tight">{item.title}</h3>
+          <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-foreground/85 via-foreground/40 to-transparent transition-opacity duration-300 group-hover:from-foreground/90" />
+          <div className="absolute left-6 bottom-5 right-6">
+            <h3 className="text-background text-xl font-heading font-semibold tracking-tight drop-shadow-sm">
+              {item.title}
+            </h3>
           </div>
         </motion.div>
       ))}
