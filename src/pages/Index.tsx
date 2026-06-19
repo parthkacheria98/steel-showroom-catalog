@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { CategoryCard } from "@/components/CategoryCard";
 import { ProductCard } from "@/components/ProductCard";
-import { CatalogueHierarchy } from "@/components/CatalogueMenu";
 import { GallerySection } from "@/components/GallerySection";
 import { useCatalog } from "@/data/useCatalog";
 import { Shield, Droplets, Clock, Award } from "lucide-react";
@@ -16,7 +15,7 @@ const fadeIn = {
 };
 
 const Index = () => {
-  const { data, isLoading, error } = useCatalog();
+  const { data } = useCatalog();
 
   const categories = data?.categories ?? [];
   const products = data?.products ?? [];
@@ -67,24 +66,6 @@ const Index = () => {
                 <img src={heroImage} alt="Premium stainless steel kitchenware collection" className="w-full h-full object-cover" />
               </div>
             </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Our Products - hierarchy */}
-      <section className="bg-muted/30 border-y border-border">
-        <div className="max-w-[1200px] mx-auto px-6 py-20">
-          <div className="mb-10">
-            <span className="text-primary font-mono text-xs tracking-tighter uppercase">Explore</span>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold tracking-tighter mt-2">Our Products</h2>
-            <p className="text-muted-foreground mt-3 max-w-lg">
-              Browse the full range across our two brands, organised by category and product.
-            </p>
-          </div>
-          {isLoading && <p className="text-muted-foreground">Loading…</p>}
-          {error && <p className="text-destructive">Failed to load.</p>}
-          <div className="bg-background border border-border max-w-3xl">
-            <CatalogueHierarchy variant="full" />
           </div>
         </div>
       </section>

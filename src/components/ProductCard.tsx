@@ -27,16 +27,6 @@ export const ProductCard = ({ product }: ProductCardProps) => {
             {product.brand} · {product.category}
           </p>
           <h3 className="text-lg font-heading font-semibold leading-tight tracking-tight">{product.name}</h3>
-          <div className="flex flex-wrap gap-1.5 font-mono text-[11px] text-muted-foreground">
-            {product.sizes.slice(0, 5).map((s) => (
-              <span key={s} className="border border-border px-1.5 py-0.5">
-                {s}
-              </span>
-            ))}
-            {product.sizes.length === 0 && product.designs.length > 0 && (
-              <span className="border border-border px-1.5 py-0.5">{product.designs.join(" / ")}</span>
-            )}
-          </div>
           <p className="pt-1 text-sm font-semibold flex items-center gap-2 group-hover:text-primary transition-colors duration-200">
             View Product
             <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
