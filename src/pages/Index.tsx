@@ -15,7 +15,7 @@ const fadeIn = {
 };
 
 const Index = () => {
-  const { data, isLoading, error } = useCatalog();
+  const { data } = useCatalog();
 
   const categories = data?.categories ?? [];
   const products = data?.products ?? [];
