@@ -172,3 +172,30 @@ export async function fetchCatalog(): Promise<Catalog> {
 const CATALOG_BASE = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/catalog`;
 export const assetUrl = (fileId: string) => `${CATALOG_BASE}/asset/${fileId}`;
 
+export interface GalleryItem {
+  id: number;
+  caption: string;
+  imageUrl: string;
+}
+
+interface RawGalleryRow {
+  id: number;
+  Gallery_Images: string | null;
+  Description: string | null;
+}
+
+export async function fetchGallery(): Promise<GalleryItem[]> {
+  const { data, error } = await supabase.functions.invoke("catalog?collection=Gallery", {
+    method: "GET",
+  });
+  if (error) throw error;
+  const rows = (data?.data ?? []) as RawGalleryRow[];
+  return rows
+    .filter((r) => !!r.Gallery_Images)
+    .map((r) => ({
+      id: r.id,
+      caption: (r.Description ?? "").trim(),
+      imageUrl: assetUrl(r.Gallery_Images as string),
+    }));
+}
+
