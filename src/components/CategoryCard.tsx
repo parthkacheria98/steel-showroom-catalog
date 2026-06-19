@@ -8,6 +8,7 @@ interface CategoryCardProps {
 
 export const CategoryCard = ({ category }: CategoryCardProps) => {
   const toneClass = category.brandSlug === "deep" ? "text-deep" : "text-angel";
+  const hoverClass = category.brandSlug === "deep" ? "group-hover:text-deep" : "group-hover:text-angel";
   return (
     <Link to={`/categories/${category.brandSlug}/${category.slug}`} className="group block">
       <div className="relative aspect-[4/5] bg-muted overflow-hidden border border-border transition-shadow duration-300 hover:shadow-hover">
@@ -21,7 +22,7 @@ export const CategoryCard = ({ category }: CategoryCardProps) => {
       </div>
       <div className="mt-4 space-y-1">
         <p className={`text-[10px] uppercase tracking-[0.2em] font-bold ${toneClass}`}>{category.brand}</p>
-        <h3 className="text-lg font-heading font-semibold tracking-tight group-hover:text-primary transition-colors">
+        <h3 className={`text-lg font-heading font-semibold tracking-tight transition-colors ${hoverClass}`}>
           {category.name}
         </h3>
         <p className="text-sm text-muted-foreground">
