@@ -1,20 +1,12 @@
 import { motion } from "framer-motion";
-import { Award, Image as ImageIcon } from "lucide-react";
+import { Image as ImageIcon } from "lucide-react";
+import { useGallery } from "@/data/useGallery";
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
-const galleryItems = [
-  { title: "IHGF Delhi Fair 2025", category: "Trade Show" },
-  { title: "Ambiente Frankfurt 2024", category: "Trade Show" },
-  { title: "Excellence in Steelware Award", category: "Award" },
-  { title: "Mumbai Houseware Expo", category: "Trade Show" },
-  { title: "Best Manufacturer 2023", category: "Award" },
-  { title: "India Kitchenware Summit", category: "Trade Show" },
-  { title: "Innovation in Design", category: "Award" },
-  { title: "Hospitality India Show", category: "Trade Show" },
-];
-
-const Gallery = () => (
+const Gallery = () => {
+  const { data: galleryItems = [], isLoading } = useGallery();
+  return (
   <div className="max-w-[1200px] mx-auto px-6 py-16">
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -32,33 +24,36 @@ const Gallery = () => (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
       {galleryItems.map((item, i) => (
         <motion.div
-          key={item.title}
+          key={item.id}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: i * 0.05, ease }}
           className="group relative aspect-[16/10] overflow-hidden border border-border bg-muted shadow-soft"
         >
-          <div className="absolute inset-0 flex items-center justify-center">
-            {item.category === "Award" ? (
-              <Award size={48} strokeWidth={1} className="text-muted-foreground/40" />
-            ) : (
-              <ImageIcon size={48} strokeWidth={1} className="text-muted-foreground/40" />
-            )}
-          </div>
+          <img
+            src={item.imageUrl}
+            alt={item.caption}
+            loading="lazy"
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
           <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-foreground/85 via-foreground/40 to-transparent transition-opacity duration-300 group-hover:from-foreground/90" />
           <div className="absolute left-6 bottom-5 right-6">
             <h3 className="text-background text-xl font-heading font-semibold tracking-tight drop-shadow-sm">
-              {item.title}
+              {item.caption}
             </h3>
           </div>
         </motion.div>
       ))}
     </div>
 
-    <p className="text-xs text-muted-foreground mt-12 text-center font-mono">
-      Photos coming soon. Replace placeholders in src/pages/Gallery.tsx with real images.
-    </p>
+    {isLoading && (
+      <p className="text-xs text-muted-foreground mt-12 text-center font-mono">Loading gallery…</p>
+    )}
+    {!isLoading && galleryItems.length === 0 && (
+      <p className="text-xs text-muted-foreground mt-12 text-center font-mono">No gallery items yet.</p>
+    )}
   </div>
-);
+  );
+};
 
 export default Gallery;
