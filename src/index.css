@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 13%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 13%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 13%;
+
+    /* Angel purple #683A8D */
+    --primary: 273 42% 39%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 97%;
+    --secondary-foreground: 0 0% 13%;
+
+    --muted: 0 0% 97%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 273 42% 39%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 273 42% 39%;
+
+    /* Brand tokens */
+    --deep: 358 84% 56%;       /* #ED3237 */
+    --deep-foreground: 0 0% 100%;
+    --angel: 273 42% 39%;      /* #683A8D */
+    --angel-foreground: 0 0% 100%;
+
+    --radius: 0.25rem;
+
+    --shadow-soft: 0 2px 4px rgba(0,0,0,0.02), 0 1px 0 rgba(0,0,0,0.04);
+    --shadow-medium: 0 12px 24px -10px rgba(0,0,0,0.08);
+    --shadow-hover: 0 20px 40px -15px rgba(0,0,0,0.12);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Deep brand theme override - applies on Deep category/product pages */
+[data-brand="deep"] {
+  --primary: 358 84% 56%;
+  --primary-foreground: 0 0% 100%;
+  --accent: 358 84% 56%;
+  --accent-foreground: 0 0% 100%;
+  --ring: 358 84% 56%;
+}
