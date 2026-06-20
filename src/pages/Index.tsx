@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { CategoryCard } from "@/components/CategoryCard";
 import { ProductCard } from "@/components/ProductCard";
-import { GallerySection } from "@/components/GallerySection";
 import { useCatalog } from "@/data/useCatalog";
 import { Shield, Droplets, Clock, Award } from "lucide-react";
 import heroImage from "@/assets/hero-image.jpg";
