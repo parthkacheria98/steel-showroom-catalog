@@ -41,7 +41,7 @@ export const Navbar = () => {
           <div className="hidden md:block justify-self-center">
             <button
               onClick={() => setSearchOpen(!searchOpen)}
-              className="flex items-center gap-2 pl-4 pr-5 py-2 border border-border rounded-full text-sm text-muted-foreground hover:text-foreground hover:border-foreground transition-colors"
+              className="flex items-center gap-3 pl-4 pr-24 py-2 w-[320px] lg:w-[400px] border border-border rounded-full text-sm text-muted-foreground hover:text-foreground hover:border-foreground transition-colors"
               aria-label="Search"
             >
               <Search size={16} strokeWidth={1.75} />
