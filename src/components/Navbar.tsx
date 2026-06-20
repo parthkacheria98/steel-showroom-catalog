@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Search, Menu, X, ChevronDown } from "lucide-react";
-import { SearchBar } from "./SearchBar";
+import { SearchModal } from "./SearchModal";
 import { CatalogueHierarchy } from "./CatalogueMenu";
 
 export const Navbar = () => {
@@ -30,18 +30,18 @@ export const Navbar = () => {
   return (
     <>
       <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-10 h-20 flex md:grid md:grid-cols-[1fr_auto_1fr] items-center justify-between md:gap-6">
+        <div className="max-w-[1280px] mx-auto px-6 md:px-8 h-20 md:h-16 flex items-center justify-between gap-6">
           {/* Logo - left */}
-          <Link to="/" className="text-xl md:text-2xl font-heading font-bold tracking-tighter flex items-center gap-2 justify-self-start">
+          <Link to="/" className="shrink-0 text-xl md:text-2xl font-heading font-bold tracking-tighter flex items-center gap-2">
             <div className="w-8 h-8 bg-primary rounded-sm" />
             RATANDEEP HOUSEWARE
           </Link>
 
           {/* Search - center */}
-          <div className="hidden md:block justify-self-center">
+          <div className="hidden md:flex flex-1 justify-center px-4">
             <button
-              onClick={() => setSearchOpen(!searchOpen)}
-              className="flex items-center gap-3 pl-4 pr-24 py-2 w-[320px] lg:w-[400px] border border-border rounded-full text-sm text-muted-foreground hover:text-foreground hover:border-foreground transition-colors"
+              onClick={() => setSearchOpen(true)}
+              className="flex items-center gap-3 px-5 w-full max-w-[520px] h-10 rounded-full border-[1.5px] border-border text-sm font-medium text-muted-foreground hover:text-foreground hover:border-foreground transition-colors"
               aria-label="Search"
             >
               <Search size={16} strokeWidth={1.75} />
@@ -50,7 +50,7 @@ export const Navbar = () => {
           </div>
 
           {/* Nav - right */}
-          <div className="hidden md:flex items-center gap-7 text-[14px] font-bold uppercase tracking-wider text-foreground justify-self-end whitespace-nowrap">
+          <div className="hidden md:flex shrink-0 items-center gap-7 text-[14px] font-bold uppercase tracking-wider text-foreground whitespace-nowrap">
             <Link to="/" className="hover:text-primary transition-colors duration-200">
               Home
             </Link>
@@ -98,9 +98,9 @@ export const Navbar = () => {
           </div>
 
           {/* Mobile menu toggle - right (mobile only) */}
-          <div className="md:hidden justify-self-end flex items-center gap-1">
+          <div className="md:hidden flex items-center gap-1">
             <button
-              onClick={() => setSearchOpen(!searchOpen)}
+              onClick={() => setSearchOpen(true)}
               className="p-2 hover:bg-muted rounded-full transition-colors"
               aria-label="Search"
             >
@@ -115,14 +115,6 @@ export const Navbar = () => {
             </button>
           </div>
         </div>
-
-        {searchOpen && (
-          <div className="border-t border-border bg-background">
-            <div className="max-w-[1200px] mx-auto px-6 py-4">
-              <SearchBar onClose={() => setSearchOpen(false)} />
-            </div>
-          </div>
-        )}
 
         {mobileOpen && (
           <div className="md:hidden border-t border-border bg-background max-h-[80vh] overflow-y-auto">
@@ -165,7 +157,8 @@ export const Navbar = () => {
           </div>
         )}
       </nav>
-      <div className="h-20" />
+      <div className="h-20 md:h-16" />
+      <SearchModal open={searchOpen} onClose={() => setSearchOpen(false)} />
     </>
   );
 };
