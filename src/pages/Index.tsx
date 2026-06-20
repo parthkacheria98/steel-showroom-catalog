@@ -69,9 +69,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Gallery preview */}
-      <GallerySection />
-
       {/* Categories */}
       <section className="max-w-[1200px] mx-auto px-6 pb-20">
         <div className="flex items-end justify-between mb-12">
