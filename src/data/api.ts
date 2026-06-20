@@ -11,6 +11,7 @@ export interface RawProductRow {
   Weight: string | null;
   Size: string | null;
   Category?: string | null;
+  Item_Description?: string | null;
   images?: Array<{ directus_files_id: string } | string> | null;
 }
 
@@ -31,6 +32,7 @@ export interface Product {
   brandSlug: string;
   category: string;
   categorySlug: string;
+  description: string;
   designs: string[];
   sizes: string[];
   variants: Variant[];
@@ -115,12 +117,18 @@ export function transform(rows: RawProductRow[]): Catalog {
         brandSlug,
         category,
         categorySlug,
+        description: clean(r.Item_Description),
         designs: [],
         sizes: [],
         variants: [],
         images: imagesByName.get(r.Item_Name.trim().toLowerCase()) ?? [],
       };
       productMap.set(key, p);
+    }
+
+    if (!p.description) {
+      const d = clean(r.Item_Description);
+      if (d) p.description = d;
     }
 
     const variant: Variant = {
