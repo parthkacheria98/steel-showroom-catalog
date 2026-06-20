@@ -30,7 +30,7 @@ export const Navbar = () => {
   return (
     <>
       <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-10 h-20 grid grid-cols-[1fr_auto_1fr] items-center gap-6">
+        <div className="max-w-[1280px] mx-auto px-6 md:px-10 h-20 flex md:grid md:grid-cols-[1fr_auto_1fr] items-center justify-between md:gap-6">
           {/* Logo - left */}
           <Link to="/" className="text-xl md:text-2xl font-heading font-bold tracking-tighter flex items-center gap-2 justify-self-start">
             <div className="w-8 h-8 bg-primary rounded-sm" />
