@@ -38,7 +38,7 @@ export const Navbar = () => {
           </Link>
 
           {/* Search - center */}
-          <div className="justify-self-center">
+          <div className="hidden md:block justify-self-center">
             <button
               onClick={() => setSearchOpen(!searchOpen)}
               className="p-2 hover:bg-muted rounded-full transition-colors"
@@ -97,7 +97,14 @@ export const Navbar = () => {
           </div>
 
           {/* Mobile menu toggle - right (mobile only) */}
-          <div className="md:hidden justify-self-end">
+          <div className="md:hidden justify-self-end flex items-center gap-1">
+            <button
+              onClick={() => setSearchOpen(!searchOpen)}
+              className="p-2 hover:bg-muted rounded-full transition-colors"
+              aria-label="Search"
+            >
+              <Search size={20} strokeWidth={1.75} />
+            </button>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className="p-2 hover:bg-muted rounded-full transition-colors"
